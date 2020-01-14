@@ -1112,7 +1112,7 @@ class Runner(ModelRunner):
         report_string += "@scenario.begin\n"
         writebuf.seek(0)
         loglines = writebuf.readlines()
-        report_string += loglines[1]
+        report_string += unicode(loglines[1], 'utf-8')
         for step in cj.all_steps:
             report_string += " "*4
             report_string += step.keyword + " "
@@ -1172,7 +1172,7 @@ class Runner(ModelRunner):
                 break
             elif step.status.name == 'undefined':
                 return 'Step Undefined'
-        error_string += str(failed_step.exception.message) \
+        error_string += unicode(failed_step.exception.message, 'utf-8') \
                                 .replace('"', "&quot;") \
                                 .replace("<", "&lt;") \
                                 .replace(">", "&gt;") \
